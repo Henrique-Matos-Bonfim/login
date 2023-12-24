@@ -18,7 +18,6 @@ tent = chc = 0
 def clear():
     return os.system('cls' if os.name == 'nt' else 'clear')
 
-#Menu tlgd
 def menu():
     global chc
     clear()

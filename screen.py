@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+import user
 
 # Cores
 
@@ -13,6 +14,7 @@ janela.title('Login')
 janela.geometry('480x360')
 janela.configure(bg=fundo)
 
+label = Label(janela, text='h')
 
 
 janela.mainloop()
