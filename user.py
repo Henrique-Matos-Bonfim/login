@@ -1,8 +1,10 @@
 import os
 import time
-
+from datetime import date
 user = []
 pswrd = []
+data = []
+sexo = []
 mn = [
     'ADICIONAR USUARIO',
     'FAZER LOGIN',
@@ -21,30 +23,39 @@ def clear():
 def menu():
     global chc
     clear()
-    print(f"+{'-'*30}+")
-    print(f"|{'MENU':^30}|")
-    print(f"+{'-'*30}+")
+    print(f"+{'-'*40}+")
+    print(f"|{'MENU':^40}|")
+    print(f"+{'-'*40}+")
     for i, v in enumerate(mn):
-        print(f'|{f" {i+1} - {v}":30}|')
-    print(f"+{'-'*30}+")
+        print(f'|{f" {i+1} - {v}":40}|')
+    print(f"+{'-'*40}+")
     chc = int(input('>>> '))
 
 #
-vsenha = senha = ' '
+vsenha=senha=sex = ' '
 def adduser():
-    global senha
+    global senha, sex
     clear()
     while True:
         r = ' '
         username = str(input('Username: ')).strip()
         if len(user) == 0 or username not in user:
             user.append(username)
+            while sex not in 'FfMm':
+                print('Qual seu sexo [F/M]')
+                sex = str(input('>>>')).strip().uppercase()[0]
+            sexo.append(sex)
+            sex = ''
             while len(senha) < length:
                 senha = str(input('Password: ')).strip()
                 if len(senha) < length:
                     print(f'Senha muito pequena')
             pswrd.append(senha)
             senha = ''
+            dataC = date.today()
+            datacad = f'{dataC.day}/{dataC.month}/{dataC.year}'
+            data.append(datacad)
+            print(datacad)
             r = str(input('Deseja continuar: [S/N] ')).strip()[0]
             clear()
             if r in 'Ss':
@@ -57,12 +68,12 @@ def adduser():
 
 def listaruser():
     clear()
-    print(f"+{'-'*30}+")
-    print(f"|{'LISTA USUARIOS':^30}|")
-    print(f"+{'-'*30}+")
+    print(f"+{'-'*40}+")
+    print(f"|{'LISTA USUARIOS':^40}|")
+    print(f"+{'-'*40}+")
     for i, v in enumerate(user):
-        print(f'|{f" {i+1} - {v}":30}|')
-    print(f"+{'-'*30}+")
+        print(f'|{f" {i+1} - {v} - {data[i]} - {sexo[i]}":40}|')
+    print(f"+{'-'*40}+")
 
 def login():
     global tent, vsenha
@@ -94,12 +105,12 @@ def remover():
     listaruser()
     vuser = str(input('Nome usuário:'))           
     if vuser in user:
-        print(f"+{'-'*30}+")
-        print(f"|{'LISTA SENHAS':^30}|")
-        print(f"+{'-'*30}+")
+        print(f"+{'-'*40}+")
+        print(f"|{'LISTA SENHAS':^40}|")
+        print(f"+{'-'*40}+")
         for i, v in enumerate(pswrd):
-            print(f'|{f" {i+1} - {v}":30}|')
-        print(f"+{'-'*30}+")
+            print(f'|{f" {i+1} - {v}":40}|')
+        print(f"+{'-'*40}+")
         vsenha = str(input('Confirme a senha:'))
         if vsenha == pswrd[user.index(vuser)]:
             user.pop(user.index(vuser))
